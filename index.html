@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IDECO Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+        input {
+            display: block;
+            margin: 10px 0;
+            padding: 5px;
+            width: 200px;
+        }
+        button {
+            display: block;
+            margin: 10px 0;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="loginForm">
+        <h2>Đăng nhập</h2>
+        <input type="text" id="username" placeholder="Tên đăng nhập">
+        <input type="password" id="password" placeholder="Mật khẩu">
+        <button onclick="login()">Đăng nhập</button>
+    </div>
+
+    <div class="container" id="changePasswordForm" style="display:none;">
+        <h2>Đổi mật khẩu</h2>
+        <input type="password" id="newPassword" placeholder="Mật khẩu mới">
+        <input type="password" id="confirmPassword" placeholder="Xác nhận mật khẩu mới">
+        <button onclick="changePassword()">Đổi mật khẩu</button>
+    </div>
+
+    <script src="https://sf-cdn.coze.com/obj/unpkg-va/flow-platform/chat-app-sdk/0.1.0-beta.5/libs/oversea/index.js"></script>
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (username === 'idecochat' && password === 'ideco@2024') {
+                alert('Đăng nhập thành công!');
+                initCozeSDK();
+            } else if (username === 'minhtriet1973' && password === '12345678') {
+                document.getElementById('loginForm').style.display = 'none';
+                document.getElementById('changePasswordForm').style.display = 'block';
+            } else {
+                alert('Tên đăng nhập hoặc mật khẩu không đúng!');
+            }
+        }
+
+        function changePassword() {
+            const newPassword = document.getElementById('newPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+
+            if (newPassword === confirmPassword) {
+                alert('Đổi mật khẩu thành công!');
+                document.getElementById('loginForm').style.display = 'block';
+                document.getElementById('changePasswordForm').style.display = 'none';
+            } else {
+                alert('Mật khẩu mới không khớp. Vui lòng thử lại!');
+            }
+        }
+
+        function initCozeSDK() {
+            new CozeWebSDK.WebChatClient({
+                config: {
+                    bot_id: '7392881755516223505',
+                },
+                componentProps: {
+                    title: 'IDECO',
+                },
+            });
+        }
+    </script>
+</body>
+</html>
